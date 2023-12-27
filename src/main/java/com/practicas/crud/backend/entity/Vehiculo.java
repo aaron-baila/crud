@@ -1,13 +1,9 @@
 package com.practicas.crud.backend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Objects;
-
 
 @Validated
 @Entity
@@ -15,8 +11,8 @@ import java.util.Objects;
 public class Vehiculo {
 
     @Id
-    @Column(name = "ID")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VEHICULOS_SEQ")
+    private Long id;
 
     @Column(name = "MATRICULA")
     private String Matricula;
@@ -30,8 +26,32 @@ public class Vehiculo {
     public Vehiculo() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
+    }
+
+    public String getMatricula() {
+        return Matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        Matricula = matricula;
+    }
+
+    public String getModelo() {
+        return Modelo;
+    }
+
+    public void setModelo(String modelo) {
+        Modelo = modelo;
+    }
+
+    public Long getKilometros() {
+        return Kilometros;
+    }
+
+    public void setKilometros(Long kilometros) {
+        Kilometros = kilometros;
     }
 
     @Override
