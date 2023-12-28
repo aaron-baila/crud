@@ -1,6 +1,8 @@
 package com.practicas.crud.backend.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Objects;
@@ -8,6 +10,8 @@ import java.util.Objects;
 @Validated
 @Entity
 @Table(name = "VEHICULOS")
+@Getter
+@Setter
 public class Vehiculo {
 
     @Id
@@ -25,34 +29,34 @@ public class Vehiculo {
 
     public Vehiculo() {
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getMatricula() {
-        return Matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        Matricula = matricula;
-    }
-
-    public String getModelo() {
-        return Modelo;
-    }
-
-    public void setModelo(String modelo) {
-        Modelo = modelo;
-    }
-
-    public Long getKilometros() {
-        return Kilometros;
-    }
-
-    public void setKilometros(Long kilometros) {
-        Kilometros = kilometros;
-    }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public String getMatricula() {
+//        return Matricula;
+//    }
+//
+//    public void setMatricula(String matricula) {
+//        Matricula = matricula;
+//    }
+//
+//    public String getModelo() {
+//        return Modelo;
+//    }
+//
+//    public void setModelo(String modelo) {
+//        Modelo = modelo;
+//    }
+//
+//    public Long getKilometros() {
+//        return Kilometros;
+//    }
+//
+//    public void setKilometros(Long kilometros) {
+//        Kilometros = kilometros;
+//    }
 
     @Override
     public boolean equals(Object o) {
