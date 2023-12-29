@@ -11,5 +11,6 @@ public interface VehiculoService {
     void update(Vehiculo vehiculo);
     void delete(Long id);
     List<Vehiculo> getAll();
+    Vehiculo getById(Long id);
 
 }

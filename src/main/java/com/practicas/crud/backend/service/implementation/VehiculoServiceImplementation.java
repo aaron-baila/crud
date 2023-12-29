@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class VehiculoServiceImplementation implements VehiculoService {
@@ -43,10 +45,29 @@ public class VehiculoServiceImplementation implements VehiculoService {
             throw new IllegalStateException("No existe un vehiculo con el id [" + id + "]");
         }
         vehiculoRepository.deleteById(id);
+
     }
+
+//    @Override
+//    public void delete(Long id) {
+//
+//        boolean existe = vehiculoRepository.existsById(id);
+//
+//        if (!existe) {
+//            throw new IllegalStateException("No existe un vehiculo con el id [" + id + "]");
+//        }
+//        vehiculoRepository.deleteById(id);
+//    }
 
     @Override
     public List<Vehiculo> getAll() {
         return vehiculoRepository.findAll();
     }
+
+    @Override
+    public Vehiculo getById(Long id) {
+        return vehiculoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("No se encontró el vehículo con id " + id));
+    }
+
 }

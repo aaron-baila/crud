@@ -45,9 +45,16 @@ public class VehiculoController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id){
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         vehiculoService.delete(id);
+        return ResponseEntity.ok("Vehículo con el id: "+ id + " eliminado correctamente");
+        //quizas mejor la excepcion aqui y con un 204
     }
+
+//    @DeleteMapping("/{id}")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void delete(@PathVariable Long id){
+//        vehiculoService.delete(id);
+//    }
 
 }
