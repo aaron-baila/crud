@@ -17,25 +17,30 @@ public class VehiculoController {
     private VehiculoService vehiculoService;
 
     @GetMapping
-    public List<Vehiculo> getAll(){
-        return  vehiculoService.getAll();
+    public List<Vehiculo> getAll() {
+        return vehiculoService.getAll();
     }
+
     @PostMapping
-    public ResponseEntity<?> createVehiculo(@RequestBody Vehiculo vehiculo, UriComponentsBuilder direccion){
+    public ResponseEntity<?> createVehiculo(@RequestBody Vehiculo vehiculo, UriComponentsBuilder direccion) {
 
         try {
             Vehiculo nuevoVehiculo = vehiculoService.create(vehiculo);
             Long id = nuevoVehiculo.getId();
 
             return ResponseEntity
-                    .created(direccion.path("/vehiculos/{id}")
-                            .build(id))
-                    .build();
+                    .created(direccion.path("/vehiculos/{id}").build(id))
+                    .body(nuevoVehiculo + "\r\nCreado satisfactoriamente");
+
+//            return ResponseEntity
+//                    .created(direccion.path("/vehiculos/{id}").build(id))
+//                    .build();
+
 
         } catch (IllegalStateException e) {
             //TODO crear nuestras propias excepciones
             throw new RuntimeException(e);
         }
-
     }
+
 }

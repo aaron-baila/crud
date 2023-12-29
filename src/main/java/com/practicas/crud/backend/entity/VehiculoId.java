@@ -6,12 +6,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 @Data
 public class VehiculoId implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VEHICULOS_SEQ")
@@ -21,6 +23,5 @@ public class VehiculoId implements Serializable {
     @Setter
     @Column(name = "MATRICULA")
     private String Matricula;
-
 
 }
