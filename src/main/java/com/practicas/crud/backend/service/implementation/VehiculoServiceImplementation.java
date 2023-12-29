@@ -18,7 +18,7 @@ public class VehiculoServiceImplementation implements VehiculoService {
     @Transactional
     public Vehiculo create(Vehiculo vehiculo) {
 
-        if(vehiculo.getId() != null){
+        if (vehiculo.getId() != null) {
             throw new IllegalStateException("El ID debe de ser null");
         }
         return vehiculoRepository.save(vehiculo);
@@ -37,6 +37,12 @@ public class VehiculoServiceImplementation implements VehiculoService {
     @Override
     public void delete(Long id) {
 
+        boolean existe = vehiculoRepository.existsById(id);
+
+        if (!existe) {
+            throw new IllegalStateException("No existe un vehiculo con el id [" + id + "]");
+        }
+        vehiculoRepository.deleteById(id);
     }
 
     @Override
