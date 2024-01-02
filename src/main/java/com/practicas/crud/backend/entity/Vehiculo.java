@@ -9,12 +9,10 @@ import java.util.Objects;
 @Validated
 @Entity
 @Table(name = "VEHICULOS")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+
+
 public class Vehiculo {
 
     @Id
