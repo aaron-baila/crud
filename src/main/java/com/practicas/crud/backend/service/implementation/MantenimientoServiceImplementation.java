@@ -47,17 +47,6 @@ public class MantenimientoServiceImplementation implements MantenimientoService 
 
     }
 
-//    @Override
-//    public void delete(Long id) {
-//
-//        boolean existe = MantenimientoRepository.existsById(id);
-//
-//        if (!existe) {
-//            throw new IllegalStateException("No existe un Mantenimiento con el id [" + id + "]");
-//        }
-//        MantenimientoRepository.deleteById(id);
-//    }
-
     @Override
     public List<Mantenimiento> getAll() {
         return mantenimientoRepository.findAll();

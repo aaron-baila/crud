@@ -33,4 +33,17 @@ public class Vehiculo {
         this.Modelo = modelo;
         this.Kilometros = kilometros;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehiculo vehiculo = (Vehiculo) o;
+        return Objects.equals(id, vehiculo.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

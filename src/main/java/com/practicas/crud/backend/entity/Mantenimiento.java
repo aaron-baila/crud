@@ -3,7 +3,6 @@ package com.practicas.crud.backend.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Date;
@@ -28,7 +27,7 @@ public class Mantenimiento {
     private Date fecha;
 
     @Column(name = "KM")
-    private Long kilomentros;
+    private Long kilometros;
 
     @Column(name = "PROXIMA")
     @Temporal(TemporalType.DATE)

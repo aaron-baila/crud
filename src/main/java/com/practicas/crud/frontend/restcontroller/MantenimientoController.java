@@ -32,11 +32,6 @@ public class MantenimientoController {
                     .created(direccion.path("/mantenimientos/{id}").build(id))
                     .body(nuevoMantenimiento + "\r\nCreado satisfactoriamente");
 
-//            return ResponseEntity
-//                    .created(direccion.path("/mantenimientos/{id}").build(id))
-//                    .build();
-
-
         } catch (IllegalStateException e) {
             //TODO crear nuestras propias excepciones
             throw new RuntimeException(e);
@@ -46,8 +41,8 @@ public class MantenimientoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         mantenimientoService.delete(id);
-        return ResponseEntity.ok("Vehículo con el id: "+ id + " eliminado correctamente");
-        //quizas mejor la excepcion aqui y con un 204
+        return ResponseEntity.ok("Vehículo con el id: " + id + " eliminado correctamente");
+
     }
 
 //    @DeleteMapping("/{id}")
