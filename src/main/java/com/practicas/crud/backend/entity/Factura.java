@@ -18,7 +18,12 @@ public class Factura {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FACTURAS_SEQ")
     private Long id;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fecha;
 
+    private Long precio;
+
+    @OneToOne
+    @JoinColumn(name="MANTENIMIENTO")
+    private Mantenimiento mantenimiento;
 }

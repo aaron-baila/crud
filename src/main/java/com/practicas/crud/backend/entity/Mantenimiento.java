@@ -16,28 +16,29 @@ import java.util.Date;
 public class Mantenimiento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MANTENIMIENTOS_SEW")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MANTENIMIENTOS_SEQ")
     private Long id;
 
-    @Column
+    @Column(name = "TIPO")
     @Enumerated(EnumType.STRING)
     private TipoMantenimiento TipoMantenimiento;
 
     @Column
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    @Column
+    @Column(name = "KM")
     private Long kilomentros;
 
-    @Column
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "PROXIMA")
+    @Temporal(TemporalType.DATE)
     private Date proximaRevision;
 
     @Column
-    private Factura factura;
-
-    @Column
     private  String descripcion;
+
+    @ManyToOne
+    @JoinColumn(name="VEHICULO")
+    private Vehiculo vehiculo;
 
 }
