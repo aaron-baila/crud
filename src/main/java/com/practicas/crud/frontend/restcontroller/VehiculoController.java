@@ -51,6 +51,19 @@ public class VehiculoController {
         //quizas mejor la excepcion aqui y con un 204
     }
 
+    @PutMapping()
+    public ResponseEntity<String> update(@RequestBody Vehiculo vehiculo) {
+        Long id = vehiculo.getId();
+        try {
+            vehiculoService.update(vehiculo);
+
+        }catch (Exception e){
+            throw new RuntimeException();
+        }
+        return ResponseEntity.ok("Vehículo con el id: "+ id + " modificado correctamente");
+
+    }
+
 //    @DeleteMapping("/{id}")
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
 //    public void delete(@PathVariable Long id){
