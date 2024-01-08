@@ -44,11 +44,8 @@ public class VehiculoController {
             return ResponseEntity
                     .created(direccion.path("/vehiculos/{id}").build(id))
                     .body(nuevoVehiculo + "\r\nCreado satisfactoriamente");
-
 //          Si no queremos poner  mensaje podemos poner build en ved de body
 //                    .build();
-
-
         } catch (IllegalStateException e) {
             throw new FrontendException(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

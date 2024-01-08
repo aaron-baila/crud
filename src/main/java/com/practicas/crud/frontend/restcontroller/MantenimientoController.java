@@ -51,10 +51,4 @@ public class MantenimientoController {
 
     }
 
-//    @DeleteMapping("/{id}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void delete(@PathVariable Long id){
-//        mantenimientoService.delete(id);
-//    }
-
 }
