@@ -1,6 +1,7 @@
 package com.practicas.crud.frontend.restcontroller;
 
 import com.practicas.crud.backend.entity.Mantenimiento;
+import com.practicas.crud.backend.entity.Vehiculo;
 import com.practicas.crud.backend.service.MantenimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,11 @@ public class MantenimientoController {
     @GetMapping
     public List<Mantenimiento> getAll() {
         return mantenimientoService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Mantenimiento getMantenimiento(@PathVariable Long id){
+        return mantenimientoService.getById(id);
     }
 
     @PostMapping

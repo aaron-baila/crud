@@ -1,7 +1,10 @@
 package com.practicas.crud.frontend.restcontroller;
 
+import com.practicas.crud.backend.entity.Mantenimiento;
 import com.practicas.crud.backend.entity.Vehiculo;
+import com.practicas.crud.backend.service.MantenimientoService;
 import com.practicas.crud.backend.service.VehiculoService;
+import com.practicas.crud.frontend.config.FrontendException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/vehiculos")
@@ -17,9 +21,17 @@ public class VehiculoController {
     @Autowired
     private VehiculoService vehiculoService;
 
+    @Autowired
+    private MantenimientoService mantenimientoService;
+
     @GetMapping
     public List<Vehiculo> getAll() {
         return vehiculoService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Vehiculo getVehiculo(@PathVariable Long id) {
+        return vehiculoService.getById(id);
     }
 
     @PostMapping
@@ -33,22 +45,24 @@ public class VehiculoController {
                     .created(direccion.path("/vehiculos/{id}").build(id))
                     .body(nuevoVehiculo + "\r\nCreado satisfactoriamente");
 
-//            return ResponseEntity
-//                    .created(direccion.path("/vehiculos/{id}").build(id))
+//          Si no queremos poner  mensaje podemos poner build en ved de body
 //                    .build();
 
 
         } catch (IllegalStateException e) {
-            //TODO crear nuestras propias excepciones
-            throw new RuntimeException(e);
+            throw new FrontendException(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
-        vehiculoService.delete(id);
-        return ResponseEntity.ok("Vehículo con el id: "+ id + " eliminado correctamente");
-        //quizas mejor la excepcion aqui y con un 204
+        try {
+            vehiculoService.delete(id);
+        } catch (IllegalStateException e) {
+            throw new FrontendException(e.getMessage(), HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok("Vehículo con el id: " + id + " eliminado correctamente");
+
     }
 
     @PutMapping()
@@ -57,17 +71,21 @@ public class VehiculoController {
         try {
             vehiculoService.update(vehiculo);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException();
         }
-        return ResponseEntity.ok("Vehículo con el id: "+ id + " modificado correctamente");
+        return ResponseEntity.ok("Vehículo con el id: " + id + " modificado correctamente");
 
     }
 
-//    @DeleteMapping("/{id}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void delete(@PathVariable Long id){
-//        vehiculoService.delete(id);
-//    }
+    @GetMapping("/{id}/mantenimientos")
+    public List<Mantenimiento> getMantenimientoVehiculo(@PathVariable Long id) {
+
+        return mantenimientoService.getAll()
+                .stream()
+                .filter(p -> p.getVehiculo().getId() == (id))
+                .collect(Collectors.toList());
+
+    }
 
 }

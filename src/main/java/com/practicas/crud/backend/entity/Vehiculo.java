@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Validated
@@ -11,8 +13,6 @@ import java.util.Objects;
 @Table(name = "VEHICULOS")
 @Data
 @NoArgsConstructor
-
-
 public class Vehiculo {
 
     @Id
@@ -20,18 +20,21 @@ public class Vehiculo {
     private Long id;
 
     @Column(name = "MATRICULA")
-    private String Matricula;
+    private String matricula;
 
     @Column(name = "MODELO")
-    private String Modelo;
+    private String modelo;
 
     @Column(name = "KM")
-    private Long Kilometros;
+    private Long kilometros;
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "vehiculo", cascade = CascadeType.ALL)
+//    private List<Mantenimiento> mantenimientos = new ArrayList<>();
 
     public Vehiculo(String matricula, String modelo, Long kilometros) {
-        this.Matricula = matricula;
-        this.Modelo = modelo;
-        this.Kilometros = kilometros;
+        this.matricula = matricula;
+        this.modelo = modelo;
+        this.kilometros = kilometros;
     }
 
     @Override

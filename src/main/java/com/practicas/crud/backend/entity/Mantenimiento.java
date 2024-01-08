@@ -36,7 +36,7 @@ public class Mantenimiento {
     @Column
     private  String descripcion;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="VEHICULO")
     private Vehiculo vehiculo;
 
