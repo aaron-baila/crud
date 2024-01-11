@@ -12,6 +12,8 @@ public class prueba {
     @GetMapping("/prueba")
     public String prueba(Model model) {
         model.addAttribute("title", "Hola mundo");
+        model.addAttribute("name", "Pepe");
+        model.addAttribute("surname", "Garcia");
         return "prueba";
     }
     
