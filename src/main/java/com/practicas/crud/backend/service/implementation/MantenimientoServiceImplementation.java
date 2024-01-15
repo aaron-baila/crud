@@ -19,7 +19,7 @@ public class MantenimientoServiceImplementation implements MantenimientoService 
     @Transactional
     public Mantenimiento create(Mantenimiento mantenimiento) {
 
-        if (mantenimiento.getId() != null) {
+        if (mantenimiento.getMantenimiento() != null) {
             throw new IllegalStateException("El ID debe de ser null");
         }
         return mantenimientoRepository.save(mantenimiento);

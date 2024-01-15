@@ -15,8 +15,9 @@ import java.util.Date;
 public class Mantenimiento {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MANTENIMIENTOS_SEQ")
-    private Long id;
+    private Long mantenimiento;
 
     @Column(name = "TIPO")
     @Enumerated(EnumType.STRING)
@@ -36,8 +37,11 @@ public class Mantenimiento {
     @Column
     private  String descripcion;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="VEHICULO")
-    private Vehiculo vehiculo;
+    @Column(name = "VEHICULO")
+    private Long idVehiculo;
+
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="VEHICULO")
+//    private Vehiculo vehiculo;
 
 }

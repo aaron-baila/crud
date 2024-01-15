@@ -1,17 +1,14 @@
 package com.practicas.crud.backend.service.implementation;
 
-import com.practicas.crud.backend.entity.Vehiculo;
+import com.practicas.crud.backend.entity.VehiculoEntity;
 import com.practicas.crud.backend.repository.VehiculoRepository;
 import com.practicas.crud.backend.service.VehiculoService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,28 +18,28 @@ public class VehiculoServiceImplementation implements VehiculoService {
 
     @Override
     @Transactional
-    public Vehiculo create(Vehiculo vehiculo) {
+    public VehiculoEntity create(VehiculoEntity vehiculoEntity) {
 
-        if (vehiculo.getId() != null) {
+        if (vehiculoEntity.getId() != null) {
             throw new IllegalStateException("El ID debe de ser null");
         }
-        return vehiculoRepository.save(vehiculo);
+        return vehiculoRepository.save(vehiculoEntity);
     }
 
     @Override
-    public Vehiculo read(Long id) {
+    public VehiculoEntity read(Long id) {
         return null;
     }
 
     @Transactional
     @Override
-    public void update(Vehiculo vehiculo) {
-        boolean existe = vehiculoRepository.existsById(vehiculo.getId());
+    public void update(VehiculoEntity vehiculoEntity) {
+        boolean existe = vehiculoRepository.existsById(vehiculoEntity.getId());
 
         if (!existe) {
-            throw new IllegalStateException("No existe un vehiculo con el id [" + vehiculo.getId() + "]");
+            throw new IllegalStateException("No existe un vehiculo con el id [" + vehiculoEntity.getId() + "]");
         }
-        vehiculoRepository.save(vehiculo);
+        vehiculoRepository.save(vehiculoEntity);
 
     }
 
@@ -61,12 +58,12 @@ public class VehiculoServiceImplementation implements VehiculoService {
 
 
     @Override
-    public List<Vehiculo> getAll() {
+    public List<VehiculoEntity> getAll() {
         return vehiculoRepository.findAll();
     }
 
     @Override
-    public Vehiculo getById(Long id) {
+    public VehiculoEntity getById(Long id) {
         return vehiculoRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("No se encontró el vehículo con id " + id));
     }

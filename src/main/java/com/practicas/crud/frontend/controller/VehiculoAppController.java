@@ -1,6 +1,6 @@
 package com.practicas.crud.frontend.controller;
 
-import com.practicas.crud.backend.entity.Vehiculo;
+import com.practicas.crud.backend.entity.VehiculoEntity;
 import com.practicas.crud.backend.service.VehiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +18,10 @@ public class VehiculoAppController {
     @GetMapping("/ficha-vehiculo")
     public ModelAndView getFichaVehiculo(@RequestParam Long codigo, ModelAndView modelAndView) {
 
-        Vehiculo vehiculo = vehiculoService.read(codigo);
+        VehiculoEntity vehiculoEntity = vehiculoService.read(codigo);
 
         modelAndView.setViewName("ficha-vehiculo");
-        modelAndView.addObject("vehiculo", vehiculo);
+        modelAndView.addObject("vehiculo", vehiculoEntity);
 
         return modelAndView;
     }

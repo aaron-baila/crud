@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Validated
@@ -13,7 +11,7 @@ import java.util.Objects;
 @Table(name = "VEHICULOS")
 @Data
 @NoArgsConstructor
-public class Vehiculo {
+public class VehiculoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VEHICULOS_SEQ")
@@ -31,7 +29,7 @@ public class Vehiculo {
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "vehiculo", cascade = CascadeType.ALL)
 //    private List<Mantenimiento> mantenimientos = new ArrayList<>();
 
-    public Vehiculo(String matricula, String modelo, Long kilometros) {
+    public VehiculoEntity(String matricula, String modelo, Long kilometros) {
         this.matricula = matricula;
         this.modelo = modelo;
         this.kilometros = kilometros;
@@ -41,8 +39,8 @@ public class Vehiculo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Vehiculo vehiculo = (Vehiculo) o;
-        return Objects.equals(id, vehiculo.id);
+        VehiculoEntity vehiculoEntity = (VehiculoEntity) o;
+        return Objects.equals(id, vehiculoEntity.id);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.practicas.crud.frontend.restcontroller;
 
 import com.practicas.crud.backend.entity.Mantenimiento;
-import com.practicas.crud.backend.entity.Vehiculo;
 import com.practicas.crud.backend.service.MantenimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,7 @@ public class MantenimientoController {
 
         try {
             Mantenimiento nuevoMantenimiento = mantenimientoService.create(mantenimiento);
-            Long id = nuevoMantenimiento.getId();
+            Long id = nuevoMantenimiento.getMantenimiento();
 
             return ResponseEntity
                     .created(direccion.path("/mantenimientos/{id}").build(id))

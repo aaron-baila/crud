@@ -1,16 +1,16 @@
 package com.practicas.crud.backend.service;
 
-import com.practicas.crud.backend.entity.Vehiculo;
+import com.practicas.crud.backend.entity.VehiculoEntity;
 
 import java.util.List;
 
 public interface VehiculoService {
 
-    Vehiculo create(Vehiculo vehiculo);
-    Vehiculo read(Long id);
-    void update(Vehiculo vehiculo);
+    VehiculoEntity create(VehiculoEntity vehiculoEntity);
+    VehiculoEntity read(Long id);
+    void update(VehiculoEntity vehiculoEntity);
     void delete(Long id);
-    List<Vehiculo> getAll();
-    Vehiculo getById(Long id);
+    List<VehiculoEntity> getAll();
+    VehiculoEntity getById(Long id);
 
 }

@@ -1,7 +1,7 @@
 package com.practicas.crud.frontend.restcontroller;
 
 import com.practicas.crud.backend.entity.Mantenimiento;
-import com.practicas.crud.backend.entity.Vehiculo;
+import com.practicas.crud.backend.entity.VehiculoEntity;
 import com.practicas.crud.backend.service.MantenimientoService;
 import com.practicas.crud.backend.service.VehiculoService;
 import com.practicas.crud.frontend.config.FrontendException;
@@ -25,25 +25,25 @@ public class VehiculoController {
     private MantenimientoService mantenimientoService;
 
     @GetMapping
-    public List<Vehiculo> getAll() {
+    public List<VehiculoEntity> getAll() {
         return vehiculoService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Vehiculo getVehiculo(@PathVariable Long id) {
+    public VehiculoEntity getVehiculo(@PathVariable Long id) {
         return vehiculoService.getById(id);
     }
 
     @PostMapping
-    public ResponseEntity<?> createVehiculo(@RequestBody Vehiculo vehiculo, UriComponentsBuilder direccion) {
+    public ResponseEntity<?> createVehiculo(@RequestBody VehiculoEntity vehiculoEntity, UriComponentsBuilder direccion) {
 
         try {
-            Vehiculo nuevoVehiculo = vehiculoService.create(vehiculo);
-            Long id = nuevoVehiculo.getId();
+            VehiculoEntity nuevoVehiculoEntity = vehiculoService.create(vehiculoEntity);
+            Long id = nuevoVehiculoEntity.getId();
 
             return ResponseEntity
                     .created(direccion.path("/vehiculos/{id}").build(id))
-                    .body(nuevoVehiculo + "\r\nCreado satisfactoriamente");
+                    .body(nuevoVehiculoEntity + "\r\nCreado satisfactoriamente");
 //          Si no queremos poner  mensaje podemos poner build en ved de body
 //                    .build();
         } catch (IllegalStateException e) {
@@ -63,10 +63,10 @@ public class VehiculoController {
     }
 
     @PutMapping()
-    public ResponseEntity<String> update(@RequestBody Vehiculo vehiculo) {
-        Long id = vehiculo.getId();
+    public ResponseEntity<String> update(@RequestBody VehiculoEntity vehiculoEntity) {
+        Long id = vehiculoEntity.getId();
         try {
-            vehiculoService.update(vehiculo);
+            vehiculoService.update(vehiculoEntity);
 
         } catch (Exception e) {
             throw new RuntimeException();
@@ -80,7 +80,7 @@ public class VehiculoController {
 
         return mantenimientoService.getAll()
                 .stream()
-                .filter(p -> p.getVehiculo().getId() == (id))
+                .filter(p -> p.getIdVehiculo() == (id))
                 .collect(Collectors.toList());
 
     }
