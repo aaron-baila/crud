@@ -68,4 +68,8 @@ public class VehiculoServiceImplementation implements VehiculoService {
                 .orElseThrow(() -> new NoSuchElementException("No se encontró el vehículo con id " + id));
     }
 
+    @Override
+    public VehiculoEntity getFirst() {
+        return vehiculoRepository.findAll().stream().findFirst().orElse(null);
+    }
 }

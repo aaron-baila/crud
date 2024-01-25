@@ -28,6 +28,10 @@ public class VehiculoController {
     public List<VehiculoEntity> getAll() {
         return vehiculoService.getAll();
     }
+    @GetMapping("/first")
+    public VehiculoEntity getFirst() {
+        return vehiculoService.getFirst();
+    }
 
     @GetMapping("/{id}")
     public VehiculoEntity getVehiculo(@PathVariable Long id) {

@@ -12,5 +12,6 @@ public interface VehiculoService {
     void delete(Long id);
     List<VehiculoEntity> getAll();
     VehiculoEntity getById(Long id);
+    VehiculoEntity getFirst();
 
 }
